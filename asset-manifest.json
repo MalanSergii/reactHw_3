@@ -1,10 +1,10 @@
 {
   "files": {
-    "main.css": "/self-react-hw2-phonebook/static/css/main.7acaea2f.css",
-    "main.js": "/self-react-hw2-phonebook/static/js/main.199d13bf.js",
-    "index.html": "/self-react-hw2-phonebook/index.html",
-    "main.7acaea2f.css.map": "/self-react-hw2-phonebook/static/css/main.7acaea2f.css.map",
-    "main.199d13bf.js.map": "/self-react-hw2-phonebook/static/js/main.199d13bf.js.map"
+    "main.css": "/self_react_hw2_phonebook/static/css/main.7acaea2f.css",
+    "main.js": "/self_react_hw2_phonebook/static/js/main.199d13bf.js",
+    "index.html": "/self_react_hw2_phonebook/index.html",
+    "main.7acaea2f.css.map": "/self_react_hw2_phonebook/static/css/main.7acaea2f.css.map",
+    "main.199d13bf.js.map": "/self_react_hw2_phonebook/static/js/main.199d13bf.js.map"
   },
   "entrypoints": [
     "static/css/main.7acaea2f.css",
