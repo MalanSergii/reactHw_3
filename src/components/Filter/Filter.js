@@ -1,11 +1,11 @@
-export default function Filter({ onFilter, filterValue }) {
+export default function Filter({ onFilterChange, filterValue }) {
   return (
     <>
       <p>Filter</p>
       <label>
         <input
           onChange={e => {
-            onFilter(e.target.value);
+            onFilterChange(e.target.value);
           }}
           value={filterValue}
           name="filter"

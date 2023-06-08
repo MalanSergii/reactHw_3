@@ -16,19 +16,37 @@ export class App extends Component {
     filter: '',
   };
 
-  addContacts = data => {
-    this.setState(prev => ({
-      contacts: [
-        ...prev.contacts,
-        { id: nanoid(), name: data.name, number: data.number },
-      ],
-    }));
+  checkContactsOnIncludeEquials = data => {
+    this.state.contacts.map(contact =>
+      contact.name === data.name
+        ? () => {
+            console.log(data.name, contact.name);
+            return;
+          }
+        : this.addContacts(data)
+    );
   };
 
-  onFilter = data => {
-    this.setState(() => ({
+  addContacts = data => {
+    const includes = this.state.contacts.some(
+      contact => contact.name === data.name
+    );
+    if (!includes) {
+      this.setState(prev => ({
+        contacts: [
+          ...prev.contacts,
+          { id: nanoid(), name: data.name, number: data.number },
+        ],
+      }));
+      return;
+    }
+    alert(`${data.name} is already in the list`);
+  };
+
+  onFilterChange = data => {
+    this.setState({
       filter: data,
-    }));
+    });
   };
 
   render() {
@@ -39,11 +57,14 @@ export class App extends Component {
     return (
       <div className="phonebook">
         <h1>Phoneboook</h1>
-        <ContactForm addContacts={this.addContacts} />
+        <ContactForm
+          addContacts={this.addContacts}
+          checkContactsOnIncludeEquials={this.checkContactsOnIncludeEquials}
+        />
         <h2>Contacts</h2>
         <Filter
           filterValue={this.state.filter}
-          onFilter={this.onFilter}
+          onFilterChange={this.onFilterChange}
         ></Filter>
         <ContactList filtered={filtered} />
       </div>
