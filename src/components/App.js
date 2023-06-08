@@ -5,13 +5,13 @@ import ContactForm from './ContactForm';
 import Filter from './Filter';
 import ContactList from './ContactList';
 
+import { Body } from './App.styled';
+
 export class App extends Component {
   state = {
     contacts: [
-      { id: 'id-1', name: 'Rosie Simpson', number: '459-12-56' },
-      { id: 'id-2', name: 'Hermione Kline', number: '443-89-12' },
-      { id: 'id-3', name: 'Eden Clements', number: '645-17-79' },
-      { id: 'id-4', name: 'Annie Copeland', number: '227-91-26' },
+      { id: '8l9QV2f4LUSfDzXZjsExO', name: 'Sergii', number: '+343-245-245' },
+      { id: '8l9QV2f4LUSfDzXZsdasExO', name: 'Olena', number: '+344-245-001' },
     ],
     filter: '',
   };
@@ -56,27 +56,36 @@ export class App extends Component {
   };
 
   render() {
+    const enableContacts = this.state.contacts.length;
+
     const filtered = this.state.contacts.filter(contact =>
       contact.name.toLowerCase().includes(this.state.filter.toLowerCase())
     );
 
     return (
-      <div className="phonebook">
+      <Body className="phonebook">
         <h1>Phoneboook</h1>
         <ContactForm
           addContacts={this.addContacts}
           checkContactsOnIncludeEquials={this.checkContactsOnIncludeEquials}
         />
-        <h2>Contacts</h2>
-        <Filter
-          filterValue={this.state.filter}
-          onFilterChange={this.onFilterChange}
-        ></Filter>
-        <ContactList
-          onClickDeleteButton={this.onClickDeleteButton}
-          filtered={filtered}
-        />
-      </div>
+        {enableContacts ? (
+          <>
+            <h2>Contacts</h2>
+            <Filter
+              filterValue={this.state.filter}
+              onFilterChange={this.onFilterChange}
+            ></Filter>
+
+            <ContactList
+              onClickDeleteButton={this.onClickDeleteButton}
+              filtered={filtered}
+            />
+          </>
+        ) : (
+          <p>There is no contacts in your phonebook</p>
+        )}
+      </Body>
     );
   }
 }
