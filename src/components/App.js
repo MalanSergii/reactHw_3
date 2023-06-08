@@ -27,6 +27,12 @@ export class App extends Component {
     );
   };
 
+  onClickDeleteButton = id => {
+    this.setState(prev => ({
+      contacts: prev.contacts.filter(contact => contact.id !== id),
+    }));
+  };
+
   addContacts = data => {
     const includes = this.state.contacts.some(
       contact => contact.name === data.name
@@ -66,7 +72,10 @@ export class App extends Component {
           filterValue={this.state.filter}
           onFilterChange={this.onFilterChange}
         ></Filter>
-        <ContactList filtered={filtered} />
+        <ContactList
+          onClickDeleteButton={this.onClickDeleteButton}
+          filtered={filtered}
+        />
       </div>
     );
   }

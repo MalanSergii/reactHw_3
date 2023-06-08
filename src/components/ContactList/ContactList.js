@@ -1,10 +1,14 @@
 import Contact from 'components/Contact';
 
-export default function ContactList({ filtered }) {
+export default function ContactList({ filtered, onClickDeleteButton }) {
   return (
     <ul>
       {filtered.map(contact => (
-        <Contact contact={contact} key={contact.id} />
+        <Contact
+          onClickDeleteButton={onClickDeleteButton}
+          contact={contact}
+          key={contact.id}
+        />
       ))}
     </ul>
   );
