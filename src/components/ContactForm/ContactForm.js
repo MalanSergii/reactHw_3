@@ -1,5 +1,7 @@
 import { Component } from 'react';
+import PropTypes from 'prop-types';
 import { Form, LebelInput, LabelText, FormButton } from './ContactForm.styled';
+
 export default class ContactForm extends Component {
   state = {
     name: '',
@@ -57,3 +59,8 @@ export default class ContactForm extends Component {
     );
   }
 }
+
+ContactForm.propTypes = {
+  addContacts: PropTypes.func.isRequired,
+  checkContactsOnIncludeEquials: PropTypes.func.isRequired,
+};
