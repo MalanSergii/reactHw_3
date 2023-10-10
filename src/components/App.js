@@ -9,12 +9,22 @@ import { Body } from './App.styled';
 
 export class App extends Component {
   state = {
-    contacts: [
-      { id: '8l9QV2f4LUSfDzXZjsExO', name: 'Sergii', number: '+343-245-245' },
-      { id: '8l9QV2f4LUSfDzXZsdasExO', name: 'Olena', number: '+344-245-001' },
-    ],
+    contacts: [],
     filter: '',
   };
+
+  componentDidMount = () => {
+    if (localStorage.getItem('contacts')) {
+      this.setState({
+        contacts: JSON.parse(localStorage.getItem('contacts')),
+      });
+    }
+  };
+  componentDidUpdate(_, prevState) {
+    if (prevState.contacts !== this.state.contacts.toString()) {
+      localStorage.setItem('contacts', JSON.stringify(this.state.contacts));
+    }
+  }
 
   checkContactsOnIncludeEquials = data => {
     this.state.contacts.map(contact =>
